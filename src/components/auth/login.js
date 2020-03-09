@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import { LoginForm } from './loginform';
 import  Header  from '../common/header';
-
 class Login extends Component {
     render() {
         return (

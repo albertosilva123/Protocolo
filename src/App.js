@@ -10,7 +10,7 @@ import Alumno from './components/alumno'
 import Home from './components/home'
 import Maestro from './components/maestro'
 import logo from './images/logo.png'
-import ModalLogin from './components/ModalLogin'
+import {ModalLogin}  from './components/ModalLogin'
 class App extends Component {
     constructor(props) {
         super(props);
@@ -33,7 +33,8 @@ class App extends Component {
 
     render() {
         const { loggedIn, user } = this.props;
-        let reDirect = !loggedIn ? <Redirect to="/login" push /> : '';
+        let reDirect = !loggedIn ? <Redirect to="/login" push /> :'';
+        loggedIn?this.state.show= false :'';
         let pantalla = !loggedIn ? '' : 
         user.alumno? 
             <Alumno>
@@ -49,27 +50,24 @@ class App extends Component {
                 <header id="header" className="alt">
                     <h1>
                         <a href="index.html">
-                            {/* <!-- Si da tiempo colocar logo --> */}
                         </a>
                     </h1>
                     <nav id="nav">
                     <ul>
                         <li><Link to={'/maestro'} className="nav-link"> Inicio </Link></li>
-                                            {/* <a href="index.html">Inicio</a> */}
                         
                         <li><a className = "nav-link" href = "http://www.escom.ipn.mx/htmls/escomunidad/catt.php">Contacto</a></li> 
-                                            {/* <a href="http://www.escom.ipn.mx/htmls/escomunidad/catt.php">Contacto</a> */}
                         <li><a className = "button" onClick={e => {this.showModal();}}>Iniciar Sesion</a></li>
-                                            {/* <a class="button" onclick="document.getElementById('login').style.display='block'" style="width:auto;">Iniciar sesión</a> */}
                     </ul>
                     </nav>
                     <ModalLogin onClose={this.showModal} show={this.state.show} />
                 </header>
-                {pantalla}
+                {/* {pantalla} */}
                 <Switch>
-                    <Route path="/login" component={Home} />
+                    <Route path="/alumno" component={Alumno}/>
+                    <Route path="/login" component={loggedIn?Alumno:Home} />
                     <Route path="/signup" component={Signup} />
-                    {reDirect}
+                    {/* {reDirect} */}
                 </Switch>
             </div>
 

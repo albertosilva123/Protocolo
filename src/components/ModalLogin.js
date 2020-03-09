@@ -11,8 +11,8 @@ class ModalLogin extends Component {
       super(props);
 
       this.state = {
-          boleta: 'AIUDAAA',
-          password: ':('
+          boleta: '',
+          password: ''
       };
 
       this.handleChange = this.handleChange.bind(this);
@@ -20,8 +20,8 @@ class ModalLogin extends Component {
   }
 
     handleChange(e) {
-        console.log(e);
         const { name, value } = e.target;
+        console.log(name,value);
         this.setState({ [name]: value });
         console.log(this.state.boleta,this.state.password);
     }
@@ -51,6 +51,7 @@ class ModalLogin extends Component {
     const { loggedIn, error } = this.props;
     let reDirect = loggedIn ? <Redirect to="/" push /> : '';
     const { boleta, password } = this.state;
+    console.log(this.props);
     return (
           <div id ="login" className="modallogin" style = {this.style}>
             <Form className="modal-content animate"  onSubmit={this.handleSubmit} method="post">
@@ -60,10 +61,10 @@ class ModalLogin extends Component {
                 </div>
                 <div className="logincontainer" style={{text_align: 'center', color: 'black'}}>
                 <label for="uname"><b>Usuario</b></label><br/>
-                <FormControl type="text" name="uname" onChange={this.handleChange} required/><br/>
+                <FormControl type="text" name="boleta" value ={boleta } onChange={this.handleChange} required/><br/>
                 {/* <!--Hay que validar que sólo se puedan ingresar números--> */}
                 <label for="psw"><b>Contraseña</b></label><br/>
-                <FormControl type="password" name="psw" onChange={this.handleChange} required/><br/>
+                <FormControl type="password" name="password" value= {password} onChange={this.handleChange} required/><br/>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"/> Recordar cuenta
                 </label>
@@ -86,7 +87,5 @@ function mapStateToProps(state) {
       error
   };
 }
-
 const connectedLoginForm = withRouter(connect(mapStateToProps)(ModalLogin));
-export { connectedLoginForm as  LoginForm };
-export default ModalLogin;
+export { connectedLoginForm as  ModalLogin };

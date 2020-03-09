@@ -23,6 +23,7 @@ class LoginForm extends Component {
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+        console.log(this.state.boleta,this.state.password);
     }
 
     handleSubmit(e) {
@@ -30,6 +31,7 @@ class LoginForm extends Component {
 
         const { boleta, password } = this.state;
         const { dispatch } = this.props;
+        console.log(this.props);
         if (boleta && password) {
             dispatch(userActions.login(boleta, password));
         }
