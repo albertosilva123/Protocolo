@@ -8,29 +8,47 @@ const connection = mysql.createConnection(config.configDB);
 const SELECT_ALUMNO = 'SELECT * FROM alumno';
 const _login = (boleta, password, done) => {
     console.log("HOLA",boleta,password);
-    connection.query("SELECT * FROM `alumno` WHERE `boleta` = '" + boleta + "'", (err, rows) => {
+    const Query= "SELECT boleta,nombre,password FROM `alumno` WHERE `boleta` = '" + boleta + "'\
+    union  SELECT numEmp,nombre,password FROM `profesor` WHERE `numEmp` = '" + boleta + "'"
+    connection.query(Query, (err, rows) => {
         if (err)
             return done(err);
         if (!rows.length) {
-            return done({loginMessage: 'Invalid email or password.'});
+            return done({loginMessage: 'Boleta incorrecta'});
         }
-        if (!( rows[0].password == password))
-            return done({loginMessage: 'Invalid email or password.'});
+        console.log("validation ",rows[0]);
+        if (!(rows[0].password == password))
+            return done({loginMessage: 'Contraseña incorrecta.'});
 
         return done(null, rows[0]);
 
     });
 }
 
-const _getUserById = (id, done) => {
-    connection.query("SELECT * FROM `users` WHERE `id` = '" + id + "'", (err, rows) => {
+const _getUserById = (id,done) => {
+    connection.query("SELECT * FROM `alumno` WHERE `boleta` = '" + id + "'", (err, rows) => {
         if (err)
             return done(err);
         if (!rows.length) {
-            return done({loginMessage: 'User not found.'});
+            return done(null);
         }
-        return done(null, rows[0]);
-
+        return done(rows[0]);
+    });
+}
+const _getUser = (app,id,done) => {
+    app.get('/database/search',(req,res)=>{
+        const id = req.query;
+        const search= "SELECT * FROM `alumno` WHERE `boleta` = '" + id + "'";
+        connection.query(search,(err,results)=>{
+            if(err){
+                return res.send(err);
+            }
+            else {
+                return res.json({
+                    data:results
+                })
+            }
+        })
     });
 }
 

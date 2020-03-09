@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter ,Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from './actions/user'
 import Login from './components/auth/login'
@@ -30,13 +30,14 @@ class App extends Component {
           show: !this.state.show
         });
       };
+
     render() {
         const { loggedIn, user } = this.props;
-        console.log(user);
         let reDirect = !loggedIn ? <Redirect to="/login" push /> : '';
         let pantalla = !loggedIn ? '' : 
         user.alumno? 
             <Alumno>
+                <div><h3>Welcome {user.nombre}</h3> <Button className="btn btn-primary" onClick={this.handleLogout}>Logout</Button></div>;
             </Alumno>
         : 
             <Maestro>
@@ -44,10 +45,29 @@ class App extends Component {
                 <div><h3>Welcome {user.alumno}</h3> <Button className="btn btn-primary" onClick={this.handleLogout}>Logout</Button></div>;
             </Maestro>
         return (
-            <div className="App">
+            <div className="body-inner">
+                <header id="header" className="alt">
+                    <h1>
+                        <a href="index.html">
+                            {/* <!-- Si da tiempo colocar logo --> */}
+                        </a>
+                    </h1>
+                    <nav id="nav">
+                    <ul>
+                        <li><Link to={'/maestro'} className="nav-link"> Inicio </Link></li>
+                                            {/* <a href="index.html">Inicio</a> */}
+                        
+                        <li><a className = "nav-link" href = "http://www.escom.ipn.mx/htmls/escomunidad/catt.php">Contacto</a></li> 
+                                            {/* <a href="http://www.escom.ipn.mx/htmls/escomunidad/catt.php">Contacto</a> */}
+                        <li><a className = "button" onClick={e => {this.showModal();}}>Iniciar Sesion</a></li>
+                                            {/* <a class="button" onclick="document.getElementById('login').style.display='block'" style="width:auto;">Iniciar sesión</a> */}
+                    </ul>
+                    </nav>
+                    <ModalLogin onClose={this.showModal} show={this.state.show} />
+                </header>
                 {pantalla}
                 <Switch>
-                    <Route path="/login" component={Login} />
+                    <Route path="/login" component={Home} />
                     <Route path="/signup" component={Signup} />
                     {reDirect}
                 </Switch>

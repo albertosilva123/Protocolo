@@ -17,16 +17,16 @@ class Alumno extends Component {
       
     };
   }
-  componentDidMount(){
-    this.getData()
-  }
-  getData = _=>{
-    fetch("https://localhost:4000/database")
-    .then(ress => ress.json())
-    .then(ress => this.setState({items: ress.data}))
-    .then(ress => console.log(this.state))
-    console.log(this.state)
-  }
+  // componentDidMount(){
+  //   this.getData()
+  // }
+  // getData = _=>{
+  //   fetch("https://localhost:4000/database")
+  //   .then(ress => ress.json())
+  //   .then(ress => this.setState({items: ress.data}))
+  //   .then(ress => console.log(this.state))
+  //   console.log(this.state)
+  // }
 
   renderBase =({idhistorial,cedula,curp,fechaIngreso,fechaAlta})=>
   <div key={idhistorial}>
@@ -37,7 +37,7 @@ class Alumno extends Component {
     const {item} = this.state
     console.log(item)
     fetch(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
-    .then(this.getData)
+    // .then(this.getData)
     .catch(err=>console.error(err))
     console.log(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
   }
@@ -46,6 +46,7 @@ class Alumno extends Component {
     console.log(items);
     return (
         <div className = "wrapper">
+          <div>{this.props.children}</div>
           <div>Pantalla alumno</div>;
           <div className="content-wrapper">
                     <div className="size card mx-auto "  >
@@ -152,19 +153,19 @@ class Alumno extends Component {
                             <tbody>
                             <tr>
                               <td></td>
-                              <td><i class="fas fa-file-pdf fa-2x"></i></td>
+                              <td><i className="fas fa-file-pdf fa-2x"></i></td>
                               <td><span className="badge badge-success">Calificado</span></td>
                               <td></td>
                             </tr>
                             <tr>
                               <td></td>
-                              <td><i class="fas fa-file-pdf fa-3x"></i></td>
+                              <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-warning">Pendiente</span></td>
                               <td></td>
                             </tr>
                             <tr>
                               <td></td>
-                              <td><i class="fas fa-file-pdf fa-3x"></i></td>
+                              <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-danger">Rechazado</span></td>
                               <td></td>
                             </tr>

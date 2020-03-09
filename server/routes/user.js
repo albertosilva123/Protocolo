@@ -2,8 +2,18 @@
 const passport = require('passport');
 const auth     = require('../models/user');
 const userController = require('../controllers/user');
-
-const register = (router) => {
+let isalumno=false;
+function callback(value) {
+    isalumno = value;
+    console.log("eha",isalumno)
+}
+function wrapper(items,callback){
+    console.log("QUERY ",items);
+    if(items == null)
+        callback(false);
+    else callback(true);
+}
+const  register = (router) => {
 
     router.post('/login', (req, res, next) => {
         // console.log(req);
@@ -13,13 +23,17 @@ const register = (router) => {
             if (!user) {return res.status(403).json({err: err, authUser: user}); }
             req.logIn(user, (err) => {
                 // if (err) {return res.status(403).json({err: err, authUser: user}); }
-                res.status(200).json({err: null, authUser: {
-                    alumno: true,
-                    boleta: user.boleta,
+                console.log("Es alumno?",isalumno);
+                // if(query!= null)isalumno = true;
+                auth.getUserById(user.boleta,wrapper)
+                res.status(200).json({err: null, authUser:{
+                    alumno:isalumno,
+                    identificador: user.boleta,
                     nombre: user.nombre,
-                    email: user.email,
-                    username: user.username,
-                }});
+                    // email: user.email,
+                    // username: user.username,
+                }
+            });
             });
         })(req, res, next);
     });
