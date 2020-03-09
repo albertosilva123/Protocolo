@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from './actions/user'
 import Login from './components/auth/login'
 import Signup from './components/auth/signup'
 import './style/main.css'
-import Alumno from '../src/components/alumno'
-import Home from '../src/components/home'
-import Maestro from '../src/components/maestro'
-import logo from '../src/images/logo.png'
+import Alumno from './components/alumno'
+import Home from './components/home'
+import Maestro from './components/maestro'
+import logo from './images/logo.png'
 import ModalLogin from './components/ModalLogin'
- 
 class App extends Component {
     constructor(props) {
         super(props);
@@ -35,22 +34,18 @@ class App extends Component {
         const { loggedIn, user } = this.props;
         console.log(user);
         let reDirect = !loggedIn ? <Redirect to="/login" push /> : '';
-        let welcomeMessage = !loggedIn ? '' : 
-        user.Alumno? 
-            <div>
+        let pantalla = !loggedIn ? '' : 
+        user.alumno? 
             <Alumno>
             </Alumno>
-            <Button className="btn btn-primary" onClick={this.handleLogout}>Logout
-            </Button>
-            </div>
         : 
-        <Maestro>
-
-        </Maestro>
-        // <div><h3>Welcome {user.nombre}</h3> <Button className="btn btn-primary" onClick={this.handleLogout}>Logout</Button></div>;
+            <Maestro>
+                {console.log(user.alumno)}
+                <div><h3>Welcome {user.alumno}</h3> <Button className="btn btn-primary" onClick={this.handleLogout}>Logout</Button></div>;
+            </Maestro>
         return (
             <div className="App">
-                {welcomeMessage}
+                {pantalla}
                 <Switch>
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />

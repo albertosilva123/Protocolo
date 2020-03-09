@@ -46,6 +46,7 @@ class Alumno extends Component {
     console.log(items);
     return (
         <div className = "wrapper">
+          <div>Pantalla alumno</div>;
           <div className="content-wrapper">
                     <div className="size card mx-auto "  >
                       <div className="card-header border-transparent">
@@ -151,7 +152,7 @@ class Alumno extends Component {
                             <tbody>
                             <tr>
                               <td></td>
-                              <td><i class="fas fa-file-pdf fa-3x"></i></td>
+                              <td><i class="fas fa-file-pdf fa-2x"></i></td>
                               <td><span className="badge badge-success">Calificado</span></td>
                               <td></td>
                             </tr>

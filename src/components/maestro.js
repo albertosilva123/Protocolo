@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Alumno extends Component {
+class Maestro extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,10 +42,11 @@ class Alumno extends Component {
   }
   render() {
     const {items,item } = this.state;
-    console.log(items);
     return (
         <div>
           <div className="content-wrapper">
+              <div>Pantalla maestro </div>
+              <div>{this.props.children}</div>
                     <div className="size card mx-auto "  >
                       <div className="card-header border-transparent">
                         <h3 className="card-title">Evaluaciones</h3>
@@ -150,19 +151,19 @@ class Alumno extends Component {
                             <tbody>
                             <tr>
                               <td></td>
-                              <td><i class="fas fa-file-pdf fa-3x"></i></td>
+                              <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-success">Calificado</span></td>
                               <td></td>
                             </tr>
                             <tr>
                               <td></td>
-                              <td><i class="fas fa-file-pdf fa-3x"></i></td>
+                              <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-warning">Pendiente</span></td>
                               <td></td>
                             </tr>
                             <tr>
                               <td></td>
-                              <td><i class="fas fa-file-pdf fa-3x"></i></td>
+                              <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-danger">Rechazado</span></td>
                               <td></td>
                             </tr>
@@ -173,18 +174,18 @@ class Alumno extends Component {
                     </div>
                   </div>
                   {/* // {items.map(this.renderBase)} */}
-          <div>
+          {/* <div>
             <input value={item.curp} onChange={e=>this.setState({item:{...item,curp:e.target.value}})} />
             <input value={item.nombre} onChange={e=>this.setState({item:{...item,nombre:e.target.value}})} />
             <input value={item.edad} onChange={e=>this.setState({item:{...item,edad:e.target.value}})} />
             <input value={item.dir} onChange={e=>this.setState({item:{...item,dir:e.target.value}})} />
             <input value={item.telefono} onChange={e=>this.setState({item:{...item,telefono:e.target.value}})} />
             <button onClick={this.addI}>Add</button>
-          </div>
+          </div> */}
           
         </div>
     );
   }
 }
 
-export default Alumno;
+export default Maestro;

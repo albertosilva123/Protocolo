@@ -48,7 +48,7 @@ class LoginForm extends Component {
                                     Boleta
                                 </Col>
                                 <Col sm={10}>
-                                    <FormControl type="boleta" id="boleta" name="boleta" placeholder="Email" value={ boleta } onChange={this.handleChange} required />
+                                    <FormControl type="boleta" id="boleta" name="boleta" placeholder="Boleta" value={ boleta } onChange={this.handleChange} required />
                                 </Col>
                             </FormGroup>
 
