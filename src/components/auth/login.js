@@ -9,7 +9,6 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <Header text="Welcome to My-Tweet!" />
                 <LoginForm />
             </div>
         );
