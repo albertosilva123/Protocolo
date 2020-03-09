@@ -35,7 +35,7 @@ const login = (boleta, password) => {
                 }
             })
             .catch( error => {
-                dispatch(loginFailure(error.message));
+                dispatch(loginFailure(error.message+" NOOOOOO"));
             });
     };
 }
