@@ -21,7 +21,7 @@ class Alumno extends Component {
     this.getData()
   }
   getData = _=>{
-    fetch("https://localhost:4000/database/search?boleta=2014081478")
+    fetch("https://localhost:4000/database/getprotocolo?boleta=2014081478")
     .then(ress => ress.json())
     .then(ress => this.setState({items: ress.data}))
     .then(ress => console.log(this.state))
@@ -29,10 +29,13 @@ class Alumno extends Component {
   }
 
 
-  renderBase =({alumnoNombre,profesorNombre,ruta_pdf_eval,numTT})=>
-  <div key={numTT}>
-    {alumnoNombre+" "+profesorNombre+" "+ruta_pdf_eval}
-  </div>
+  renderBase =({numTT,nombre,ruta_pdf_eval,estatus})=>
+    <tr>
+      <td>{nombre}</td>
+      <td><i className="fas fa-file-pdf fa-3x"></i></td>
+      <td><span className="badge badge-success">{estatus}</span></td>
+      <td>2020/05</td>
+    </tr>
 
   // addI = _ =>{
   //   const {item} = this.state
@@ -149,7 +152,8 @@ class Alumno extends Component {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                                {items.map(this.renderBase)}
+                            {/* <tr>
                               <td></td>
                               <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-success">Calificado</span></td>
@@ -166,14 +170,14 @@ class Alumno extends Component {
                               <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-danger">Rechazado</span></td>
                               <td></td>
-                            </tr>
+                            </tr> */}
                             </tbody>
                           </table>
                         </div>
                       </div>
                     </div>
                   </div>
-                  // {items.map(this.renderBase)}
+                  {/* {items.map(this.renderBase)} */}
         </div>
     );
   }
