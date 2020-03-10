@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { userActions } from './actions/user'
 import Login from './components/auth/login'
 import Signup from './components/auth/signup'
-import './style/main.css'
 import Alumno from './components/alumno'
 import Home from './components/home'
+// import './style/main.css'
 import Maestro from './components/maestro'
-import logo from './images/logo.png'
+// import logo from './images/logo.png'
 import {ModalLogin}  from './components/ModalLogin'
 class App extends Component {
     constructor(props) {
@@ -23,18 +23,30 @@ class App extends Component {
     }
     
     state = {
-        show: false
+        show: false,
+        id:''
       };
       showModal = e => {
         this.setState({
           show: !this.state.show
         });
       };
+    _get(){
+        fetch("http://localhost:3001/database/")
+        .then(ress => ress.json())
+        .then(ress => this.setState({id: ress.data}))
+        .then(ress => console.log(ress))
+    }
+
 
     render() {
         const { loggedIn, user } = this.props;
+        loggedIn?console.log(user.identificador):'';
+        loggedIn?console.log("http://localhost:3001/database/search"+"?boleta="+user.identificador):'';
+        loggedIn?this.get:''; 
         let reDirect = !loggedIn ? <Redirect to="/login" push /> :'';
         loggedIn?this.state.show= false :'';
+        loggedIn?console.log(this.state):'';
         let pantalla = !loggedIn ? '' : 
         user.alumno? 
             <Alumno>
@@ -60,14 +72,20 @@ class App extends Component {
                         <li><a className = "button" onClick={e => {this.showModal();}}>Iniciar Sesion</a></li>
                     </ul>
                     </nav>
-                    <ModalLogin onClose={this.showModal} show={this.state.show} />
+                    <ModalLogin onClose={this.showModal} show={this.state.show} usuario ={user}/>
                 </header>
                 {/* {pantalla} */}
                 <Switch>
                     <Route path="/alumno" component={Alumno}/>
-                    <Route path="/login" component={loggedIn?Alumno:Home} />
+                    <Route path="/login" render={(routeProps) => (
+                        loggedIn?
+                        <Alumno usuario= {user} />
+                        :
+                        <Home/>
+                        )}
+                    />
                     <Route path="/signup" component={Signup} />
-                    {/* {reDirect} */}
+                    {reDirect}
                 </Switch>
             </div>
 

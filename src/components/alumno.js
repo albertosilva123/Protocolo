@@ -17,42 +17,40 @@ class Alumno extends Component {
       
     };
   }
-  // componentDidMount(){
-  //   this.getData()
-  // }
-  // getData = _=>{
-  //   fetch("https://localhost:4000/database")
-  //   .then(ress => ress.json())
-  //   .then(ress => this.setState({items: ress.data}))
-  //   .then(ress => console.log(this.state))
-  //   console.log(this.state)
-  // }
+  componentDidMount(){
+    this.getData()
+  }
+  getData = _=>{
+    fetch("https://localhost:4000/database/search?boleta=2014081478")
+    .then(ress => ress.json())
+    .then(ress => this.setState({items: ress.data}))
+    .then(ress => console.log(this.state))
+    console.log(this.state)
+  }
 
-  renderBase =({idhistorial,cedula,curp,fechaIngreso,fechaAlta})=>
-  <div key={idhistorial}>
-    {idhistorial+" "+cedula+" "+curp+" "+fechaIngreso+" "+fechaAlta}
+
+  renderBase =({alumnoNombre,profesorNombre,ruta_pdf_eval,numTT})=>
+  <div key={numTT}>
+    {alumnoNombre+" "+profesorNombre+" "+ruta_pdf_eval}
   </div>
 
-  addI = _ =>{
-    const {item} = this.state
-    console.log(item)
-    fetch(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
-    // .then(this.getData)
-    .catch(err=>console.error(err))
-    console.log(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
-  }
+  // addI = _ =>{
+  //   const {item} = this.state
+  //   console.log(item)
+  //   fetch(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
+  //   .then(this.getData)
+  //   .catch(err=>console.error(err))
+  //   console.log(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
+  // }
   render() {
-    const {items,item } = this.state;
+    const {items} = this.state;
     console.log(items);
     return (
-        <div className = "wrapper">
-          <div>{this.props.children}</div>
-          <div>Pantalla alumno</div>;
+        <div>
           <div className="content-wrapper">
                     <div className="size card mx-auto "  >
                       <div className="card-header border-transparent">
                         <h3 className="card-title">Evaluaciones</h3>
-
                         <div className="card-tools">
                         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
                         <ul className="navbar-nav">
@@ -153,7 +151,7 @@ class Alumno extends Component {
                             <tbody>
                             <tr>
                               <td></td>
-                              <td><i className="fas fa-file-pdf fa-2x"></i></td>
+                              <td><i className="fas fa-file-pdf fa-3x"></i></td>
                               <td><span className="badge badge-success">Calificado</span></td>
                               <td></td>
                             </tr>
@@ -175,6 +173,7 @@ class Alumno extends Component {
                       </div>
                     </div>
                   </div>
+                  // {items.map(this.renderBase)}
         </div>
     );
   }
