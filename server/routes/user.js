@@ -13,7 +13,7 @@ const  register = (router) => {
             if (!user) {return res.status(403).json({err: err, authUser: user}); }
             req.logIn(user, (err) => {
                 // if (err) {return res.status(403).json({err: err, authUser: user}); }
-                let isalumno = true;
+                let isalumno = false;
                 console.log("Es alumno?",isalumno);
                 // if(query!= null)isalumno = true;
                 isalumno = auth.getUserById(user.boleta, function(items){

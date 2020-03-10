@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../style/alumno.css';
 import '../style/fontawesome-free/css/all.min.css';
+// import '../style/main.css'
 class Alumno extends Component {
   constructor(props) {
     super(props);

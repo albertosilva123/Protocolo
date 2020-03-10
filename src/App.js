@@ -79,7 +79,10 @@ class App extends Component {
                     <Route path="/alumno" component={Alumno}/>
                     <Route path="/login" render={(routeProps) => (
                         loggedIn?
+                        user.alumno?
                         <Alumno usuario= {user} />
+                        :
+                        <Maestro usuario = {user}/>
                         :
                         <Home/>
                         )}

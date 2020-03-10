@@ -503,6 +503,10 @@ mark,
     width: 50rem;
     border-radius: 1.25rem;
 }
+.sizeM{
+    width: 80rem;
+    border-radius: 1.25rem;
+}
 .figure {
   display: inline-block;
 }
