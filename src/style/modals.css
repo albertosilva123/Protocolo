@@ -2,11 +2,11 @@
 .modallogin input[type=password],.modallogin input[type=text] {
     color: #1b262d;
     width: 60%;
-padding: 6px 10px;
-margin: 8px 20% 5px 20%;
-border: 1px solid #ccc;
-border-radius: 20px;
-box-sizing: border-box
+    padding: 6px 10px;
+    margin: 8px 20% 5px 20%;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box
 }
 #fpass {
     background-color: #1b262d;

@@ -56,19 +56,16 @@ class ModalLogin extends Component {
     return (
           <div id ="login" className="modallogin" style = {this.style}>
             <Form className="modal-content animate"  onSubmit={this.handleSubmit} method="post">
-                 <div className="tittlelogincontainer">
-                <span className="close" title="Close Modal" onClick={close}>&times;</span>
-                <h1 style={{fontSize: '25px', fontWeight: 'bold'}}>Inicio de sesión</h1>
+                 <div className="tittlelogincontainer" style={{width:'100%', textAlign:'center'}}>
+                  <span className="close" title="Close Modal" onClick={close}>&times;</span>
+                  <h1 style={{fontSize: '1.5em', fontWeight: 'bold', textAlign:'center', width:'100%'}}>Inicio de sesión</h1>
                 </div>
-                <div className="logincontainer" style={{textAlign: 'center', color: 'black'}}>
+                <div className="logincontainer" style={{textAlign: 'center', color: 'black', marginTop:'2em'}}>
                 <label for="uname"><b>Usuario</b></label><br/>
                 <FormControl type="text" name="boleta" value ={boleta } onChange={this.handleChange} required/><br/>
                 {/* <!--Hay que validar que sólo se puedan ingresar números--> */}
                 <label for="psw"><b>Contraseña</b></label><br/>
                 <FormControl type="password" name="password" value= {password} onChange={this.handleChange} required/><br/>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"/> Recordar cuenta
-                </label>
                 </div>
                 <div class="logincontainer" style={{backgroundColor:'#f1f1f1'}}>
                   <button id="fpass" type="button">Olvidé la contraseña</button>
