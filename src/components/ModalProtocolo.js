@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import '../style/modals.css'
 class ModalProtocolo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      alumnos:0      
+    };
+  }
+    addAlumn=_=>{
+      this.setState({alumnos:this.state.alumnos+1})
+      if(this.state.alumnos>3)this.setState({alumnos:3})
+      console.log(this.state);
+    }
+    renderaddAlumno=(id)=>
+          <tr>
+            <labl>Alumno {id}</labl><input name={"boleta"+id} required/>
+          </tr>
+    addrenders=_=>{
+      for(let i = 0;i<this.state.alumnos;i++)this.renderaddAlumno(i+1);
+    }
     render() {
         let style ={display:'block'}
         const close= ()=> {console.log("JOLA");document.getElementById("prot").style.display="none";}
@@ -19,6 +37,7 @@ class ModalProtocolo extends Component {
             display:'block'
           }
         }
+
     return (
         <div>
           <div id="prot" className="modalprot" style = {this.style}>
@@ -46,6 +65,17 @@ class ModalProtocolo extends Component {
                                         <input id="proto" type="file" name="email" required/>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                      <label for="uname"><b>Añadir alumno</b></label><br/>
+                                    </td>
+                                    <td>
+                                    <i className="fas fa-plus-circle" onClick={this.addAlumn}></i>
+                                        </td>
+                                </tr>
+                                  {
+                                      this.addrenders
+                                  }
                             </table>      
                     </div>
           
