@@ -1,32 +1,39 @@
+h1{
+    text-align: center;
+}
+
 /* Modal de Login | CSS */
 .modallogin input[type=password],.modallogin input[type=text] {
     color: #1b262d;
     width: 60%;
-padding: 6px 10px;
-margin: 8px 20% 5px 20%;
-border: 1px solid #ccc;
-border-radius: 20px;
-box-sizing: border-box
+    padding: 6px 10px;
+    margin: 8px 20% 5px 20%;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    box-sizing: border-box
 }
-#fpass {
+#fpass1 {
     background-color: #1b262d;
     color: #fff;
     border-radius: 20px;
     padding: 5px 2px;
-    margin: .5% .5% .5% 17.5%;
+    margin: 0 0 0 17.5%;
     border: none;
     cursor: pointer;
-    width: 30%
+    text-align: center;
+    width: 30%;
 }
-#sesion {
+#sesion1 {
     background-color: #1b262d;
     color: #fff;
     border-radius: 20px;
-    padding: 5px 2px;
-    margin: .5% 17% .5% .5%;
+    padding: 1% 0.5%;
+    margin: 0 0 .5% 0;
+    text-align: center;
     border: none;
     cursor: pointer;
-    width: 30%
+    width: 30%;
 }
 #fpass:hover,
 #sesion:hover {
@@ -34,7 +41,7 @@ box-sizing: border-box
 }
 .tittlelogincontainer {
     text-align: center;
-    margin: 12px 0 0 0;
+    margin: 0;
     position: relative
 }
 .logincontainer {
