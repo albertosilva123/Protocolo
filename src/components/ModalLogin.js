@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../style/login.css';
+import '../style/modals.css';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form, FormGroup, FormControl, ControlLabel, Button, Grid, Row, Col, Alert } from 'react-bootstrap';
@@ -37,7 +37,8 @@ class ModalLogin extends Component {
     }
   render() {
     let style ={display:'block'}
-    const close= ()=> {document.getElementById("login").style.display="none"}
+    const close= ()=> {document.getElementById("login").style.display="none"
+  console.log(document.getElementById("login").style)}
     if(!this.props.show){
       this.style= {
         display:'none'
@@ -55,11 +56,11 @@ class ModalLogin extends Component {
     return (
           <div id ="login" className="modallogin" style = {this.style}>
             <Form className="modal-content animate"  onSubmit={this.handleSubmit} method="post">
-                <div className="tittlelogincontainer">
+                 <div className="tittlelogincontainer">
                 <span className="close" title="Close Modal" onClick={close}>&times;</span>
-                <h1 style={{font_size: '25px', font_weight: 'bold'}}>Inicio de sesión</h1>
+                <h1 style={{fontSize: '25px', fontWeight: 'bold'}}>Inicio de sesión</h1>
                 </div>
-                <div className="logincontainer" style={{text_align: 'center', color: 'black'}}>
+                <div className="logincontainer" style={{textAlign: 'center', color: 'black'}}>
                 <label for="uname"><b>Usuario</b></label><br/>
                 <FormControl type="text" name="boleta" value ={boleta } onChange={this.handleChange} required/><br/>
                 {/* <!--Hay que validar que sólo se puedan ingresar números--> */}
@@ -69,11 +70,9 @@ class ModalLogin extends Component {
                     <input type="checkbox" checked="checked" name="remember"/> Recordar cuenta
                 </label>
                 </div>
-                <div className="logincontainer" style={{background_color:'#f1f1f1'}}>
-                <button id="fpass" type="button">Olvidé la contraseña</button>
-                <Button bsStyle="primary" type="submit">Iniciar sesion</Button>
-                                    {' '}or{' '}<Link to="/signup">Register</Link>
-                {/* <button id="sesion" type="submit">Iniciar sesión</button> */}
+                <div class="logincontainer" style={{backgroundColor:'#f1f1f1'}}>
+                  <button id="fpass" type="button">Olvidé la contraseña</button>
+                  <button id="sesion" type="submit">Iniciar sesión</button>
                 </div>
             </Form>
             </div>

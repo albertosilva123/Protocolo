@@ -1,33 +1,35 @@
 import React, { Component } from 'react';
-import '../style/registro.css'
-// import '../style/style.css'
+import '../style/modals.css'
 class ModalRegistro extends Component {
 
     render() { 
-    let style ={display:'block'}
-    const close= ()=> {document.getElementById("regis").style.display="none";console.log("HOLA")}
-    if(!this.props.show){
-        this.style= {
+        let style ={display:'block'}
+        const close= ()=> {document.getElementById("regis").style.display="none";}
+        const onClose = e => {
+            this.props.onClose && this.props.onClose(e);
+          };
+        
+        if(!this.props.show){
+          this.style= {
             display:'none'
+          }
+        } 
+        else{
+          this.style = {
+            display:'block'
+          }
         }
-    } 
-    else{
-        console.log("HOLIIII  desde dentro")
-      this.style = {
-        display:'block'
-      }
-    }
     return (
         <div>
           <div id="regis" className="modalregis" style = {this.style}>
              <form className="modal-content animate" action="/action_page.php" method="post">
                  <div className="tittleregiscontainer">
-                 <span  className="close" title="Close Modal" onClose={e => {this.onClose(e);}}>&times;</span>
-                 <h1 style={{font_size: '25px', font_weight: 'bold'}}>Registro de alumno</h1>
+                 <span  className="close" title="Close Modal" onClose={e => {this.onClose(e); }}onClick={close}>&times;</span>
+                 <h1 style={{fontSize: '25px', fontWeight: 'bold'}}>Registro de alumno</h1>
                  </div>
           
-                     <div className="regiscontainer" style={{text_align: 'center', color: 'black'}}>
-                         <table style={{width:'90%', text_align:'center', margin_left: '5%'}}>
+                     <div className="regiscontainer" style={{textAlign: 'center', color: 'black'}}>
+                         <table style={{width:'90%', textAlign:'center', marginLeft: '5%'}}>
                              <tbody>
 
                              <tr>
@@ -54,7 +56,7 @@ class ModalRegistro extends Component {
                              </tr>
                              </tbody>
                          </table><br/>
-                         <table style={{width:'90%', text_align:'center', margin_left: '5%'}}>
+                         <table style={{width:'90%', textAlign:'center', marginLeft: '5%'}}>
                              <tbody>
 
                              <tr>
@@ -82,7 +84,7 @@ class ModalRegistro extends Component {
                              </tbody>
                          </table>
                          <br/>
-                         <table style={{width:'90%', text_align:'center', margin_left: '5%'}}>
+                         <table style={{width:'90%', textAlign:'center', marginLeft: '5%'}}>
                              <tbody>
                              <tr>
                                  <th>
@@ -102,7 +104,7 @@ class ModalRegistro extends Component {
                              </tr>
                              </tbody>
                          </table>
-                         <table style={{width:'60%', text_align:'center', margin_left: '20%'}}>
+                         <table style={{width:'60%', textAlign:'center', marginLeft: '20%'}}>
                             <tbody>
 
                              <tr>
@@ -119,8 +121,8 @@ class ModalRegistro extends Component {
                          </table>
                      </div>
           
-                 <div className="regiscontainer" style={{background_color:'#f1f1f1'}}>
-                 <button id="cancelar" type="button" onClick={close}>Cancelar</button>
+                 <div className="regiscontainer" style={{backgroundColor:'#f1f1f1'}}>
+                 <button id="cancelar" type="button" onClose={e => {this.onClose(e);}}onClick={close}>Cancelar</button>
                  <button id="registrar" type="submit">Registrar</button>
                  </div>
              </form>

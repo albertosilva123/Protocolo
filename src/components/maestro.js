@@ -7,13 +7,6 @@ class Maestro extends Component {
     super(props);
     this.state = {
       items: [],
-      item:{
-        curp:'Ingresar curp',
-        nombre:'Ingresar nombre',
-        edad:'Ingresar edad',
-        dir:'Ingresar direccion',
-        telefono:'Ingresar telefono'
-      },
       show:false
       
     };
@@ -21,46 +14,64 @@ class Maestro extends Component {
   componentDidMount(){
     this.getData()
   }
+
+
+
+  sendEvaluacion = (e)=>
+    console.log(e);
+  
   getData = _=>{
-    fetch("https://localhost:4000/database")
+    fetch(`https://localhost:4000/database/getprotocoloToMaster?boleta=${this.props.usuario.identificador}`)
     .then(ress => ress.json())
     .then(ress => this.setState({items: ress.data}))
     .then(ress => console.log(this.state))
     console.log(this.state)
   }
-
-  renderBase =({idhistorial,cedula,curp,fechaIngreso,fechaAlta})=>
-  <div key={idhistorial}>
-    {idhistorial+" "+cedula+" "+curp+" "+fechaIngreso+" "+fechaAlta}
-  </div>
+  renderBase =({numTT,nombreTT,fechaIngreso,fechaAlta})=>
+               <tr>
+                <td>{numTT}</td>
+                <td>{nombreTT}</td>
+                <td></td>
+                <td><input type="file" name="" id=""></input></td>
+                <td>
+                  <select name="" id="">
+                    <option value="Calificado">Calificado</option>
+                    <option value="Rechazado">Rechazado</option>
+                  </select>
+                </td>
+                <td></td>
+                <td>
+                  <button onClick={console.log(this)}>Enviar</button>
+                </td>
+              </tr>
 
   addI = _ =>{
     const {item} = this.state
-    console.log(item)
     fetch(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
     .then(this.getData)
     .catch(err=>console.error(err))
     console.log(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
   }
   render() {
-    const {items,item } = this.state;
+    const {items,item} = this.state;
+    console.log(this.props.usuario);
     return (
         <div>
           <h1>Maestro</h1>
-           <div class="content-wrapper">
-                <div class="sizeM card mx-auto">
-                  <div class="card-header border-transparent">
-                    <h3 class="card-title">Evaluaciones</h3>
+           <div className="content-wrapper">
+                <div className="sizeM card mx-auto">
+                  <div className="card-header border-transparent">
+                    <h3 className="card-title">Evaluaciones</h3>
 
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
+                    <div className="card-tools">
+                      <button type="button" className="btn btn-tool" data-card-widget="collapse">
+                        <i className="fas fa-minus"></i>
                       </button>
                     </div>
                   </div>
-                  <div class="card-body p-0">
-                    <div class="table-responsive">
-                      <table class="table m-0">
+                  <div className="card-body p-0">
+                    <div className="table-responsive">
+                      <table className="table m-0">
                         <thead>
                         <tr>
                           <th>No Protocolo</th>
@@ -73,7 +84,8 @@ class Maestro extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                          {items.map(this.renderBase)}
+                        {/* <tr>
                           <td></td>
                           <td></td>
                           <td></td>
@@ -88,7 +100,7 @@ class Maestro extends Component {
                           <td>
                             <button>Enviar</button>
                           </td>
-                        </tr>
+                        </tr> */}
                         </tbody>
                       </table>
                     </div>
@@ -99,5 +111,16 @@ class Maestro extends Component {
     );
   }
 }
+// function mapStateToProps(state) {
+//     const { loggedIn, user } = state.authentication;
+//     return {
+//         loggedIn,
+//         user
+//     };
+// }
+
+// const connectedApp = withRouter(connect(mapStateToProps)(App));
+// export { connectedApp as  App };
+
 
 export default Maestro;
