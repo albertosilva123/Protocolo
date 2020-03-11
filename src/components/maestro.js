@@ -249,6 +249,66 @@ class Maestro extends Component {
                         </div>
                       </div>
                     </div>
+            {/* <!-- Main content --> */}
+            <div className="content">
+                <div className="container-fluid">
+                  <div className="row">
+                    <div className="col-lg-12">
+                     <div className="card">
+                        <div className="card-header border-transparent">
+                          <h3 className="card-title">Evaluaciones</h3>
+
+                          <div className="card-tools">
+                            <button type="button" className="btn btn-tool" data-card-widget="collapse">
+                              <i className="fas fa-minus"></i>
+                            </button>
+                          </div>
+                        {/* <!-- /.card-header --> */}
+                        <div className="card-body p-0">
+                          <div className="table-responsive">
+                            <table className="table m-0">
+                              <thead>
+                              <tr>
+                                <th>No Protocolo</th>
+                                <th>Protocolo</th>
+                                <th>Alumnos</th>
+                                <th>Palabras clave</th>
+                                <th>Sinodales</th>
+                                <th>Asignación</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                {items.map(this.renderBase)}
+                                {/* 
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                  <select name="" id="">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                  </select>
+                                </td>
+                                <td>
+                                  <button>Asignar</button>
+                                </td> */}
+                              </tbody>
+                            </table>
+                          </div>
+                          {/* <!-- /.table-responsive --> */}
+                        </div>
+                      </div>
+                    </div>
+                    {/* <!-- /.col-md-6 --> */}
+                  </div>
+                  {/* <!-- /.row --> */}
+                </div>
+                {/* <!-- /.container-fluid --> */}
+              </div>
+            
+                    </div>
                     {/* <!-- /.col-md-6 --> */}
                   </div>
                   {/* <!-- /.row --> */}

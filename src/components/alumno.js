@@ -60,10 +60,10 @@ class Alumno extends Component {
                   <a className="nav-link" data-widget="pushmenu" href="#"><i className="fas fa-bars"></i></a>
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
-                  <a href="index3.html" className="nav-link">Home</a>
+                  <a href="index3.html" className="nav-link">Cerrar sesión</a>
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
-                  <a href="#" className="nav-link">Contact</a>
+                  <a href="https://www.escom.ipn.mx/htmls/escomunidad/catt.php" className="nav-link">Contacto</a>
                 </li>
               </ul>
 
