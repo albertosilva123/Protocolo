@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import '../style/modals.css'
 class ModalProtocolo extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
-      alumnos:0      
+      alumnos:[],      
+      alumnosc:0
     };
   }
     addAlumn=_=>{
-      this.setState({alumnos:this.state.alumnos+1})
-      if(this.state.alumnos>3)this.setState({alumnos:3})
+        var rows = this.state.alumnos
+        if(rows.length<3){  
+          rows.push('Alumno: '+(this.state.alumnosc+1))
+          this.setState({alumnos: rows})
+          this.setState({alumnosc:this.state.alumnosc+1})
+        }
+      // if(this.state.alumnos>3)this.setState({alumnos:3})
       console.log(this.state);
     }
     renderaddAlumno=(id)=>
@@ -73,9 +80,11 @@ class ModalProtocolo extends Component {
                                     <i className="fas fa-plus-circle" onClick={this.addAlumn}></i>
                                         </td>
                                 </tr>
-                                  {
-                                      this.addrenders
-                                  }
+                                {this.state.alumnos.map((r) => (
+                                  <tr>
+                                        <td><label>{r}</label><input placeholder="Boleta" name = {r}></input></td>
+                                    </tr>
+                                  ))}
                             </table>      
                     </div>
           

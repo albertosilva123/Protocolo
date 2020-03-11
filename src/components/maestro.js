@@ -273,10 +273,10 @@ class Maestro extends Component {
             <footer className="main-footer">
               {/* <!-- To the right --> */}
               <div className="float-right d-none d-sm-inline">
-                Anything you want
+                -
               </div>
               {/* <!-- Default to the left --> */}
-              <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+              <strong>Copyright &copy; 2020 <a href="#"></a>.</strong> All rights reserved.
             </footer>
               <script src="../js/jquery.min.js"></script>
               {/* <!-- Bootstrap 4 --> */}
