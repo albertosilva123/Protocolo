@@ -14,22 +14,7 @@ class Maestro extends Component {
   }
   componentDidMount(){
     this.getData()
-      // const script = document.createElement("script");
-      // script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js";
-      // script.async = true;
-      // document.body.appendChild(script);
-      // const script2 = document.createElement("script");
-      // script2.src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ;
-      // script2.async = true;
-      // document.body.appendChild(script2);
-      // const script3 = document.createElement("script");
-      // script3.src = "js/adminlte.js";
-      // script3.async = true;
-      // document.body.appendChild(script3);
   }
-
-
-
   sendEvaluacion = (e)=>
     console.log(e);
   
