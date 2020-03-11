@@ -51,39 +51,37 @@ class ModalProtocolo extends Component {
                 <form className="modal-content animate" action="/action_page.php" method="post">
                     <div className="tittleprotcontainer">
                     <span onClick={close} onClose = {e=>{this.onClose}} className="close" title="Close Modal">&times;</span>
-                    <h1 style={{fontSize: '25px', fontWeight: 'bold'}} >Inicio de sesión</h1>
+                    <h1 style={{fontSize: '25px', fontWeight: 'bold'}} >Registro de protocolo</h1>
                     </div>
           
                     <div className="protcontainer" style={{textAlign: 'center', color: 'black'}}>
-                    <table style={{width:'90%', textAlign:'center', marginLeft: '5%'}}>
+                    <table>
                                 <tr>
                                     <th>
                                         <label for="uname"><b>Nombre del protocolo</b></label><br/>
+                                        <input id="nproto" type="text" name="uname" style={{width:'80%', marginLeft:'10%'}} required/>
                                     </th>
+                                </tr>                                   
+                                <tr>
                                     <th>
-                                        <label for="uname"><b>Archivo del protocolo</b></label>
+                                        <label for="uname" style={{paddingLeft:'4%', width:'90%'}}><b>Archivo del protocolo</b></label>
                                     </th> 
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input id="nproto" type="text" name="uname" required/>
-                                    </td>
-                                    <td>
-                                        <input id="proto" type="file" name="email" required/>
+                                        <input id="proto" type="file" name="email" style={{marginBottom:'1em'}} required/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                      <label for="uname"><b>Añadir alumno</b></label><br/>
+                                <tr style={{width:'100%', color:'black'}}>
+                                    <td style={{width:'800px'}}>
+                                      <label for="uname"><b>Añadir alumno</b></label>
+                                      <i className="fas fa-plus-circle" onClick={this.addAlumn} style={{marginLeft:'10px', paddingLeft:'0px'}}></i>
                                     </td>
-                                    <td>
-                                    <i className="fas fa-plus-circle" onClick={this.addAlumn}></i>
-                                        </td>
                                 </tr>
                                 {this.state.alumnos.map((r) => (
-                                  <tr>
-                                        <td><label>{r}</label><input placeholder="Boleta" name = {r}></input></td>
-                                    </tr>
+                                  <tr style={{width:'100%', color:'black'}}>
+                                        <td style={{width:'100%'}}><label>{r}</label><br></br><input placeholder="Boleta" name = {r} style={{width:'600px', color:'black'}}></input></td>
+                                  </tr>
                                   ))}
                             </table>      
                     </div>
