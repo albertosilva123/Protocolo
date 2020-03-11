@@ -69,18 +69,18 @@ class ModalProtocolo extends Component {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input id="proto" type="file" name="email" style={{marginBottom:'1em'}} required/>
+                                        <input id="proto" type="file" name="email" style={{marginBottom:'1em', width:'80%'}} required/>
                                     </td>
                                 </tr>
                                 <tr style={{width:'100%', color:'black'}}>
                                     <td style={{width:'800px'}}>
                                       <label for="uname"><b>Añadir alumno</b></label>
-                                      <i className="fas fa-plus-circle" onClick={this.addAlumn} style={{marginLeft:'10px', paddingLeft:'0px'}}></i>
+                                      <i className="fas fa-plus-circle" onClick={this.addAlumn} style={{paddingLeft:'0px', marginLeft:'10px'}}></i>
                                     </td>
                                 </tr>
                                 {this.state.alumnos.map((r) => (
-                                  <tr style={{width:'100%', color:'black'}}>
-                                        <td style={{width:'100%'}}><label>{r}</label><br></br><input placeholder="Boleta" name = {r} style={{width:'600px', color:'black'}}></input></td>
+                                  <tr style={{width:'100%', color:'black', textAlign:'center'}}>
+                                        <td style={{width:'100%'}}><label>{r}</label><br></br><input placeholder="Boleta" name = {r} style={{width:'85%', color:'black'}}></input></td>
                                   </tr>
                                   ))}
                             </table>      
