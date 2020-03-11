@@ -5,6 +5,7 @@ class ModalProtocolo extends Component {
         let style ={display:'block'}
         const close= ()=> {console.log("JOLA");document.getElementById("prot").style.display="none";}
         const onClose = e => {
+            console.log(this.props.onClose);
             this.props.onClose && this.props.onClose(e);
           };
         
@@ -23,7 +24,7 @@ class ModalProtocolo extends Component {
           <div id="prot" className="modalprot" style = {this.style}>
                 <form className="modal-content animate" action="/action_page.php" method="post">
                     <div className="tittleprotcontainer">
-                    <span onClick={close} className="close" title="Close Modal">&times;</span>
+                    <span onClick={close} onClose = {e=>{this.onClose}} className="close" title="Close Modal">&times;</span>
                     <h1 style={{fontSize: '25px', fontWeight: 'bold'}} >Inicio de sesión</h1>
                     </div>
           

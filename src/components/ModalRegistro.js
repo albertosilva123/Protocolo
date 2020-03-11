@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import '../style/modals.css'
+let user, pass;
 class ModalRegistro extends Component {
-
+    addI = _ =>{
+        fetch(`https://localhost:4000/add`,{method: 'post',body: JSON.stringify({user: user,password:pass})});
+        // fetch(`https://localhost:4000/add`,method:'post',{user: user,password: pass})
+        // .catch(err=>console.error(err+"ALV"))
+        console.log("HOLA");
+        // console.log(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
+    }
     render() { 
         let style ={display:'block'}
         const close= ()=> {document.getElementById("regis").style.display="none";}
@@ -22,7 +29,7 @@ class ModalRegistro extends Component {
     return (
         <div>
           <div id="regis" className="modalregis" style = {this.style}>
-             <form className="modal-content animate" action="/action_page.php" method="post">
+             <form className="modal-content animate" onSubmit={this.addI} method="post">
                  <div className="tittleregiscontainer">
                  <span  className="close" title="Close Modal" onClose={e => {this.onClose(e); }}onClick={close}>&times;</span>
                  <h1 style={{fontSize: '25px', fontWeight: 'bold'}}>Registro de alumno</h1>
