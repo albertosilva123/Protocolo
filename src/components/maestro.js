@@ -259,6 +259,42 @@ class Maestro extends Component {
             </div>
             {/* <!-- /.content-wrapper --> */}
 
+            {/* <!-- /.card-header --> */}
+            <div className="card-body p-0">
+                          <div className="table-responsive">
+                            <table className="table m-0">
+                              <thead>
+                              <tr>
+                                <th>No Protocolo</th>
+                                <th>Protocolo</th>
+                                <th>Alumnos</th>
+                                <th>Calificación</th>
+                                <th>Status</th>
+                                <th>Fecha</th>
+                                <th>Evaluar</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                {items.map(this.renderBase)}
+                                {/* <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="file" name="" id=""></td>
+                                <td>
+                                  <select name="" id="">
+                                    <option value="Calificado">Calificado</option>
+                                    <option value="Rechazado">Rechazado</option>
+                                  </select>
+                                </td>
+                                <td></td>
+                                <td>
+                                  <button>Enviar</button>
+                                </td> */}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
             {/* <!-- Control Sidebar --> */}
             <aside className="control-sidebar control-sidebar-dark">
               {/* <!-- Control sidebar content goes here --> */}
