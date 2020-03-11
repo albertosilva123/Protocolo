@@ -72,6 +72,11 @@ app.post('/add',function(req,res){
   })
 
 });
+
+app.post('/addprotocolo',function(req,res){
+  
+}); 
+
 app.get('/database',(req,res) =>{
     pool.query(SELECT_QUERY,(err,results) =>{
       if(err){
