@@ -64,10 +64,10 @@ class Maestro extends Component {
                   <a className="nav-link" data-widget="pushmenu" href="#"><i className="fas fa-bars"></i></a>
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
-                  <a href="/login" className="nav-link">Home</a>
+                  <a href="/login" className="nav-link">Cerrar sesión</a>
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
-                  <a href="#" className="nav-link">Contact</a>
+                  <a href="http://www.escom.ipn.mx/htmls/escomunidad/catt.php" className="nav-link">Contacto</a>
                 </li>
               </ul>
 
