@@ -68,8 +68,8 @@ class ModalLogin extends Component {
                   <FormControl type="password" name="password" value= {password} onChange={this.handleChange} required/>
                 </div>
                 <div class="logincontainer2" style={{backgroundColor:'#f1f1f1', height:'2em', marginTop:'1.7em', marginBottom:'1em'}}>
-                  <button id="fpass1" type="button" style={{height:'100%', textAlign:'center', fontSize:'80%'}}>Olvidé la contraseña</button>
-                  <button id="sesion1" type="submit" style={{height:'100%'}}>Iniciar sesión</button>
+                  <button id="fpass1" type="button" style={{textAlign:'center', padding:'0', height:'100%'}}>Olvidé la contraseña</button>
+                  <button id="sesion1" type="submit" style={{textAlign:'center', padding:'0', height:'100%'}}>Iniciar sesión</button>
                 </div>
             </Form>
             </div>
