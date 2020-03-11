@@ -35,6 +35,7 @@ class ModalLogin extends Component {
             dispatch(userActions.login(boleta, password));
         }
     }
+    
   render() {
     let style ={display:'block'}
     const close= ()=> {document.getElementById("login").style.display="none"

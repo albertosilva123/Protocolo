@@ -36,6 +36,7 @@ class LoginForm extends Component {
             dispatch(userActions.login(boleta, password));
         }
     }
+    
     render() {
         const { loggedIn, error } = this.props;
         let reDirect = loggedIn ? <Redirect to="/" push /> : '';
