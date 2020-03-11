@@ -56,20 +56,20 @@ class ModalLogin extends Component {
     return (
           <div id ="login" className="modallogin" style = {this.style}>
             <Form className="modal-content animate"  onSubmit={this.handleSubmit} method="post">
-                 <div className="tittlelogincontainer" style={{width:'100%', textAlign:'center'}}>
+                 <div className="tittlelogincontainer">
                   <span className="close" title="Close Modal" onClick={close}>&times;</span>
-                  <h1 style={{fontSize: '1.5em', fontWeight: 'bold', textAlign:'center', width:'100%'}}>Inicio de sesión</h1>
+                  <h1 style={{fontSize: '25px', fontWeight: 'bold', textAlign:'center', width:'90%'}}>Inicio de sesión</h1>
                 </div>
-                <div className="logincontainer" style={{textAlign: 'center', color: 'black', marginTop:'2em'}}>
-                <label for="uname"><b>Usuario</b></label><br/>
-                <FormControl type="text" name="boleta" value ={boleta } onChange={this.handleChange} required/><br/>
-                {/* <!--Hay que validar que sólo se puedan ingresar números--> */}
-                <label for="psw"><b>Contraseña</b></label><br/>
-                <FormControl type="password" name="password" value= {password} onChange={this.handleChange} required/><br/>
+                <div className="logincontainer" style={{textAlign: 'center', color: 'black'}}>
+                  <label for="uname" style={{marginTop:'3em'}}><b>Usuario</b></label>
+                  <FormControl type="text" name="boleta" value ={boleta } onChange={this.handleChange} required/>
+                  {/* <!--Hay que validar que sólo se puedan ingresar números--> */}
+                  <label for="psw"><b>Contraseña</b></label>
+                  <FormControl type="password" name="password" value= {password} onChange={this.handleChange} required/>
                 </div>
-                <div class="logincontainer" style={{backgroundColor:'#f1f1f1'}}>
-                  <button id="fpass" type="button">Olvidé la contraseña</button>
-                  <button id="sesion" type="submit">Iniciar sesión</button>
+                <div class="logincontainer2" style={{backgroundColor:'#f1f1f1', height:'2em', marginTop:'1.7em', marginBottom:'1em'}}>
+                  <button id="fpass1" type="button" style={{height:'100%', textAlign:'center', fontSize:'80%'}}>Olvidé la contraseña</button>
+                  <button id="sesion1" type="submit" style={{height:'100%'}}>Iniciar sesión</button>
                 </div>
             </Form>
             </div>
