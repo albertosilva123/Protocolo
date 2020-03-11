@@ -294,7 +294,7 @@ class Maestro extends Component {
                             </table>
                           </div>
                         </div>
-                      </div>
+                      
             {/* <!-- Control Sidebar --> */}
             <aside className="control-sidebar control-sidebar-dark">
               {/* <!-- Control sidebar content goes here --> */}
