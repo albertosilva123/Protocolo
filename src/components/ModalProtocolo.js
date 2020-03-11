@@ -51,7 +51,7 @@ class ModalProtocolo extends Component {
                 <form className="modal-content animate" action="/action_page.php" method="post">
                     <div className="tittleprotcontainer">
                     <span onClick={close} onClose = {e=>{this.onClose}} className="close" title="Close Modal">&times;</span>
-                    <h1 style={{fontSize: '25px', fontWeight: 'bold'}} >Registro de protocolo</h1>
+                    <h1 style={{fontSize: '25px', fontWeight: 'bold'}} id="tittlepro">Registro de protocolo</h1>
                     </div>
           
                     <div className="protcontainer" style={{textAlign: 'center', color: 'black'}}>
