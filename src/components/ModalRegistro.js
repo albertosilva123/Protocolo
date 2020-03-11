@@ -1,14 +1,47 @@
 import React, { Component } from 'react';
 import '../style/modals.css'
-let user, pass;
+let user = "BETO", pass ="1234";
 class ModalRegistro extends Component {
-    addI = _ =>{
-        fetch(`https://localhost:4000/add`,{method: 'post',body: JSON.stringify({user: user,password:pass})});
-        // fetch(`https://localhost:4000/add`,method:'post',{user: user,password: pass})
-        // .catch(err=>console.error(err+"ALV"))
-        console.log("HOLA");
-        // console.log(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
+    constructor(props){
+        super(props);
+        this.state = {
+            nombre:'',
+            apellidoP:'',
+            apellidoM:'',
+            usuario:'',
+            boleta:'',
+            correo:'',
+            pass:'',
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+       }
+    
+    handleChange(e) {
+        const { name, value } = e.target;
+        console.log(name,value);
+        this.setState({ [name]: value });
     }
+
+    handleSubmit(event){ 
+        event.preventDefault();
+        fetch('https://localhost:4000/add', {
+            method: 'POST',
+            body: JSON.stringify({
+                nombre: this.state.nombre,
+                apellidoP:this.state.apellidoP,
+                apellidoM:this.state.apellidoM,
+                Usuario:this.state.usuario,
+                boleta:this.state.boleta,
+                pass:this.state.pass,
+                correo:this.state.correo,
+
+            }),
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(ress => ress.json())
+        .then(ress=> ress.data.length?alert("El usuario ya esta registrado"):alert("Usuario registrado con exito"));
+    };
     render() { 
         let style ={display:'block'}
         const close= ()=> {document.getElementById("regis").style.display="none";}
@@ -29,7 +62,7 @@ class ModalRegistro extends Component {
     return (
         <div>
           <div id="regis" className="modalregis" style = {this.style}>
-             <form className="modal-content animate" onSubmit={this.addI} method="post">
+             <form className="modal-content animate" onSubmit={this.handleSubmit}>
                  <div className="tittleregiscontainer">
                  <span  className="close" title="Close Modal" onClose={e => {this.onClose(e); }}onClick={close}>&times;</span>
                  <h1 style={{fontSize: '25px', fontWeight: 'bold'}}>Registro de alumno</h1>
@@ -52,13 +85,13 @@ class ModalRegistro extends Component {
                              </tr>
                              <tr>
                                  <td>
-                                     <input id="nomb" type="text" name="uname" required/>
+                                     <input id="nomb" type="text" name="nombre"  onChange={this.handleChange} required/>
                                  </td>
                                  <td>
-                                     <input id="appa" type="text" name="uname" required/>      
+                                     <input id="appa" type="text" name="apellidoP"  onChange={this.handleChange} required/>      
                                  </td>
                                  <td>
-                                     <input id="apma" type="text" name="uname" required/>
+                                     <input id="apma" type="text" name="apellidoM" onChange={this.handleChange}required/>
                                  </td>
                              </tr>
                              </tbody>
@@ -79,13 +112,13 @@ class ModalRegistro extends Component {
                              </tr>
                              <tr>
                                  <td>
-                                     <input id="user" type="text" name="uname" required/>
+                                     <input id="user" type="text" name="usuario" onChange={this.handleChange} required/>
                                  </td>
                                  <td>
-                                     <input id="bole" type="text" name="uname" required/>
+                                     <input id="bole" type="text" name="boleta" onChange={this.handleChange} required/>
                                  </td>
                                  <td>
-                                     <input id="email" type="email" name="email" required/>
+                                     <input id="email" type="email" name="correo" onChange={this.handleChange} required/>
                                  </td>
                              </tr>
                              </tbody>
@@ -103,7 +136,7 @@ class ModalRegistro extends Component {
                              </tr>
                              <tr>
                                  <td>
-                                     <input id="passw" type="password" name="uname" required/>
+                                     <input id="passw" type="password" name="pass" onChange={this.handleChange} required/>
                                  </td>
                                  <td>
                                      <input id="cpassw" type="password" name="email" required/>
@@ -112,7 +145,7 @@ class ModalRegistro extends Component {
                              </tbody>
                          </table>
                          <table style={{width:'60%', textAlign:'center', marginLeft: '20%'}}>
-                            <tbody>
+                            {/* <tbody>
 
                              <tr>
                                  <td>
@@ -124,7 +157,7 @@ class ModalRegistro extends Component {
                                      <input id="nump" type="text" name="psw" required/>
                                  </td>
                              </tr>
-                            </tbody>
+                            </tbody> */}
                          </table>
                      </div>
           

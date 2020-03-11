@@ -30,12 +30,11 @@ class ModalLogin extends Component {
         e.preventDefault();
         const { boleta, password } = this.state;
         const { dispatch } = this.props;
-        console.log("AIUDAA",boleta);
         if (boleta && password) {
             dispatch(userActions.login(boleta, password));
         }
     }
-    
+
   render() {
     let style ={display:'block'}
     const close= ()=> {document.getElementById("login").style.display="none"
