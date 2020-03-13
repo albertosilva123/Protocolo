@@ -340,6 +340,8 @@ span.psw {
     }
     .modal-content{
         width: 90%;
-        font-size: 0.8em;
+    }
+    #tittlepro{
+        width: 90%;
     }
 }
