@@ -41,7 +41,7 @@ class App extends Component {
 
     render() {
         const { loggedIn, user } = this.props;
-        let alumno = false;
+        let alumno = true;
         loggedIn?console.log(user):'';
         loggedIn?console.log("http://localhost:3001/database/search"+"?boleta="+user.identificador):'';
         loggedIn?this.get:''; 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../style/modals.css'
+import { Form, FormGroup, FormControl, ControlLabel, Button, Grid, Row, Col, Alert } from 'react-bootstrap';
 class ModalProtocolo extends Component {
   
   constructor(props) {
@@ -48,7 +49,7 @@ class ModalProtocolo extends Component {
     return (
         <div>
           <div id="prot" className="modalprot" style = {this.style}>
-                <form className="modal-content animate" action="/action_page.php" method="post">
+                <Form className="modal-content animate" action="/action_page.php" method="post">
                     <div className="tittleprotcontainer">
                     <span onClick={close} onClose = {e=>{this.onClose}} className="close" title="Close Modal">&times;</span>
                     <h1 style={{fontSize: '25px', fontWeight: 'bold'}} >Registro de protocolo</h1>
@@ -90,7 +91,7 @@ class ModalProtocolo extends Component {
                     <button id="cancelar0" type="button" onClick={close}>Cancelar</button>
                     <button id="registrar0" type="submit">Registrar</button>
                     </div>
-                </form>
+                </Form>
             </div>
         </div>
     );

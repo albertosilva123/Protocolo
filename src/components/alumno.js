@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../style/alumno.css';
 import '../style/fontawesome-free/css/all.min.css';
+import os from 'os';
+import { objectOf } from 'prop-types';
 // import '../style/main.css'
 class Alumno extends Component {
   constructor(props) {
@@ -19,8 +21,20 @@ class Alumno extends Component {
     };
   }
   componentDidMount(){
+    this.getLocalIp();
     this.getData()
   }
+    getLocalIp=_=>{
+        const adress =[];
+        const interfaces = os.networkInterfaces();
+        console.log(interfaces);
+        Object.keys(interfaces).forEach((interfaceObject)=>{
+          if(interfaceObject.familty ==='IPv4' && !interfaceObject.internal){
+            adress.push(interfaceObject.adress);
+          }
+        });
+        console.log(adress);
+    }
   getData = _=>{
     fetch(`https://localhost:4000/database/getprotocolo?boleta=${this.props.usuario.identificador}`)
     .then(ress => ress.json())
@@ -182,7 +196,7 @@ class Alumno extends Component {
                 <div className="container-fluid">
                   <div className="row mb-2">
                     <div className="col-sm-6">
-                      <h1 className="m-0 text-dark">Bienvenido Alberto</h1>
+                       <h1 className="m-0 text-dark">Bienvenido {this.props.usuario.nombre}</h1>
                     </div>
                     {/* <!-- /.col --> */}
                   </div>
@@ -247,10 +261,9 @@ class Alumno extends Component {
             <footer className="main-footer">
               {/* <!-- To the right --> */}
               <div className="float-right d-none d-sm-inline">
-                Anything you want
               </div>
               {/* <!-- Default to the left --> */}
-              <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+              <strong>Copyright &copy; 2020</strong> All rights reserved.
             </footer>
               <script src="../js/jquery.min.js"></script>
               {/* <!-- Bootstrap 4 --> */}

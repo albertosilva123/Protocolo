@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../style/modals.css'
-let user = "BETO", pass ="1234";
+import { Form, FormGroup, FormControl, ControlLabel, Button, Grid, Row, Col, Alert } from 'react-bootstrap';
 class ModalRegistro extends Component {
     constructor(props){
         super(props);
@@ -62,7 +62,7 @@ class ModalRegistro extends Component {
     return (
         <div>
           <div id="regis" className="modalregis" style = {this.style}>
-             <form className="modal-content animate" onSubmit={this.handleSubmit}>
+             <Form className="modal-content animate" onSubmit={this.handleSubmit}>
                  <div className="tittleregiscontainer">
                  <span  className="close" title="Close Modal" onClose={e => {this.onClose(e); }}onClick={close}>&times;</span>
                  <h1 style={{fontSize: '25px', fontWeight: 'bold'}}>Registro de alumno</h1>
@@ -85,13 +85,13 @@ class ModalRegistro extends Component {
                              </tr>
                              <tr>
                                  <td>
-                                     <input id="nomb" type="text" name="nombre"  onChange={this.handleChange} required/>
+                                     <FormControl id="nomb" type="text" name="nombre"  onChange={this.handleChange} required/>
                                  </td>
                                  <td>
-                                     <input id="appa" type="text" name="apellidoP"  onChange={this.handleChange} required/>      
+                                     <FormControl id="appa" type="text" name="apellidoP"  onChange={this.handleChange} required/>      
                                  </td>
                                  <td>
-                                     <input id="apma" type="text" name="apellidoM" onChange={this.handleChange}required/>
+                                     <FormControl id="apma" type="text" name="apellidoM" onChange={this.handleChange}required/>
                                  </td>
                              </tr>
                              </tbody>
@@ -112,13 +112,13 @@ class ModalRegistro extends Component {
                              </tr>
                              <tr>
                                  <td>
-                                     <input id="user" type="text" name="usuario" onChange={this.handleChange} required/>
+                                     <FormControl id="user" type="text" name="usuario" onChange={this.handleChange} required/>
                                  </td>
                                  <td>
-                                     <input id="bole" type="text" name="boleta" onChange={this.handleChange} required/>
+                                     <FormControl id="bole" type="text" name="boleta" onChange={this.handleChange} required/>
                                  </td>
                                  <td>
-                                     <input id="email" type="email" name="correo" onChange={this.handleChange} required/>
+                                     <FormControl id="email" type="email" name="correo" onChange={this.handleChange} required/>
                                  </td>
                              </tr>
                              </tbody>
@@ -136,10 +136,10 @@ class ModalRegistro extends Component {
                              </tr>
                              <tr>
                                  <td>
-                                     <input id="passw" type="password" name="pass" onChange={this.handleChange} required/>
+                                     <FormControl id="passw" type="password" name="pass" onChange={this.handleChange} required/>
                                  </td>
                                  <td>
-                                     <input id="cpassw" type="password" name="email" required/>
+                                     <FormControl id="cpassw" type="password" name="email" required/>
                                  </td>
                              </tr>
                              </tbody>
@@ -165,7 +165,7 @@ class ModalRegistro extends Component {
                  <button id="cancelar" type="button" onClose={e => {this.onClose(e);}}onClick={close}>Cancelar</button>
                  <button id="registrar" type="submit">Registrar</button>
                  </div>
-             </form>
+             </Form>
              </div>
 
         </div>

@@ -7,6 +7,8 @@ const app = express();
 const port = 4000;
 const SELECT_QUERY = 'SELECT * FROM alumno';
 var bodyParser =require("body-parser");
+var os = require('os');
+var networkInterfaces = os.networkInterfaces();
 var pool  = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
@@ -106,20 +108,20 @@ app.get('/database',(req,res) =>{
 
   });
 
-  app.get('/database/add',(req,res) =>{
-      const {boleta,nombre,email,usuario,pass} = req.query;
-      const INSERT_alumno = `INSERT INTO alumno values('${boleta}','${nombre}','${email}','${usuario}','${pass}','0');`;
-      // res.send("Añadiendo a la base...");
-      pool.query(INSERT_alumno,(err,results) =>{
-          if(err){
-              return res.send(err);
-          }
-          else {
-              return res.send('Se añadio un registro');
-          }
-      });
-      console.log(boleta,nombre);
-  });
+//   app.get('/database/add',(req,res) =>{
+//       const {boleta,nombre,email,usuario,pass} = req.query;
+//       const INSERT_alumno = `INSERT INTO alumno values('${boleta}','${nombre}','${email}','${usuario}','${pass}','0');`;
+//       // res.send("Añadiendo a la base...");
+//       pool.query(INSERT_alumno,(err,results) =>{
+//           if(err){
+//               return res.send(err);
+//           }
+//           else {
+//               return res.send('Se añadio un registro');
+//           }
+//       });
+//       console.log(boleta,nombre);
+//   });
   app.get('/database',(req,res) =>{
       pool.query(SELECT_ALUMNO,(err,results) =>{
         if(err){
@@ -169,12 +171,24 @@ app.get('/database',(req,res) =>{
         }
       });
       });
+
+
+    // app.get('/database/add',(req,res) =>{
+    // const {nombre, palabrasClave[5]} = req.query;
+    // var datetime = new Date();
+    // var numTT_prefix = datetime.toISOString().slice(0,5) + "A";
+    // const GET_maxNumTT = "SELECT numTT FROM `Protocolo` WHERE SUBSTRING(numTT,6)=(SELECT MAX(CAST(SUBSTRING(numTT,6) AS SIGNED)) FROM `Protocolo`)";
+    
+    // });
+
+
 const httpsOptions = {
   key: fs.readFileSync('./security/cert.key'),
   cert: fs.readFileSync('./security/cert.pem')
 }
 const server = https.createServer(httpsOptions, app)
   .listen(port, () => {
-      console.log('server running at ' + port)
+     console.log("Ip ",networkInterfaces., 'server running at '+ port);
+
   })
 
