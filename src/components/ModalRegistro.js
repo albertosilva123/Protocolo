@@ -25,7 +25,7 @@ class ModalRegistro extends Component {
 
     handleSubmit(event){ 
         event.preventDefault();
-        fetch('https://localhost:4000/add', {
+        fetch('http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/add', {
             method: 'POST',
             body: JSON.stringify({
                 nombre: this.state.nombre,
@@ -37,9 +37,9 @@ class ModalRegistro extends Component {
                 correo:this.state.correo,
 
             }),
-            headers: {"Content-Type": "application/json"}
+            headers: {"Content-Type": "text/plain"}
         })
-        .then(ress => ress.json())
+        .then(ress => console.log(ress.json()))
         .then(ress=> ress.data.length?alert("El usuario ya esta registrado"):alert("Usuario registrado con exito"));
     };
     render() { 

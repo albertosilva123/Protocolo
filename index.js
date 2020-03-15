@@ -122,18 +122,6 @@ app.get('/database',(req,res) =>{
 //       });
 //       console.log(boleta,nombre);
 //   });
-  app.get('/database',(req,res) =>{
-      pool.query(SELECT_ALUMNO,(err,results) =>{
-        if(err){
-          return res.send(err);
-        }
-        else{
-          return res.json({
-            data:results
-          })
-        }
-      });
-    });
   app.get('/database/getprotocolo',(req,res) =>{
     const {boleta} = req.query;
     const get_protocolo = `select *from protocolo,alumno,evaluacion,profesor\
@@ -181,14 +169,26 @@ app.get('/database',(req,res) =>{
     
     // });
 
-
+  function getLocalIP() {
+    const interfaces = os.networkInterfaces();
+    const addresses = [];
+  
+    Object.keys(interfaces).forEach((netInterface) => {
+    interfaces[netInterface].forEach((interfaceObject) => {
+      if (interfaceObject.family === 'IPv4' && !interfaceObject.internal) {
+      addresses.push(interfaceObject.address);
+      }
+    });
+    });
+    return addresses;
+  }
 const httpsOptions = {
   key: fs.readFileSync('./security/cert.key'),
   cert: fs.readFileSync('./security/cert.pem')
 }
 const server = https.createServer(httpsOptions, app)
   .listen(port, () => {
-     console.log("Ip ",networkInterfaces., 'server running at '+ port);
+     console.log("Ip ",os.networkInterfaces(), 'server running at '+ port);
 
   })
 

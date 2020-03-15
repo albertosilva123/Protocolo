@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import '../style/alumno.css';
 import '../style/fontawesome-free/css/all.min.css';
-import os from 'os';
-import { objectOf } from 'prop-types';
-// import '../style/main.css'
+const ni = require('network-interfaces');
+const options = {
+  internal: false, // boolean: only acknowledge internal or external addresses (undefined: both)
+  ipVersion: 4     // integer (4 or 6): only acknowledge addresses of this IP address family (undefined: both)
+}
+const interfaceNames = ni.getInterfaces(options);
 class Alumno extends Component {
   constructor(props) {
     super(props);
@@ -16,25 +19,29 @@ class Alumno extends Component {
         dir:'Ingresar direccion',
         telefono:'Ingresar telefono'
       },
-      show:false
-      
+      show:false,
+      address: interfaceNames
     };
   }
   componentDidMount(){
-    this.getLocalIp();
+  
+    // this.getLocalIP();
     this.getData()
   }
-    getLocalIp=_=>{
-        const adress =[];
-        const interfaces = os.networkInterfaces();
-        console.log(interfaces);
-        Object.keys(interfaces).forEach((interfaceObject)=>{
-          if(interfaceObject.familty ==='IPv4' && !interfaceObject.internal){
-            adress.push(interfaceObject.adress);
-          }
-        });
-        console.log(adress);
-    }
+
+  // getLocalIP=_=>{
+  //   const interfaces = os.networkInterfaces();
+  //   const addresses = [];
+  //   Object.keys(interfaces).forEach((netInterface) => {
+  //   interfaces[netInterface].forEach((interfaceObject) => {
+  //     if (interfaceObject.family === 'IPv4' && !interfaceObject.internal) {
+  //     addresses.push(interfaceObject.address);
+  //     }
+  //   });
+  //   });
+  //   this.setState({address:addresses})
+  //   console.log(this.state)
+  // }
   getData = _=>{
     fetch(`https://localhost:4000/database/getprotocolo?boleta=${this.props.usuario.identificador}`)
     .then(ress => ress.json())
@@ -62,7 +69,6 @@ class Alumno extends Component {
   // }
   render() {
     const {items} = this.state;
-    console.log(items);
     return (
              <div className="wrapper">
 

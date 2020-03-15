@@ -12,6 +12,7 @@ const _login = (boleta, password, done) => {
     const Query= "SELECT boleta,nombre,password FROM `alumno` WHERE `boleta` = '" + boleta + "'\
     union  SELECT numEmp,nombre,password FROM `profesor` WHERE `numEmp` = '" + boleta + "'"
     connection.query(Query, (err, rows) => {
+        console.log("HOLA");
         if (err)
             return done(err);
         if (!rows.length) {

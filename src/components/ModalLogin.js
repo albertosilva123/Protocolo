@@ -9,7 +9,6 @@ class ModalLogin extends Component {
     
     constructor(props) {
       super(props);
-
       this.state = {
           boleta: '',
           password: ''
@@ -18,7 +17,7 @@ class ModalLogin extends Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
     handleChange(e) {
         const { name, value } = e.target;
         console.log(name,value);
@@ -27,6 +26,7 @@ class ModalLogin extends Component {
     }
 
     handleSubmit(e) {
+        console.log(this.state)
         e.preventDefault();
         const { boleta, password } = this.state;
         const { dispatch } = this.props;
