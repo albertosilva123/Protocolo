@@ -25,22 +25,32 @@ class ModalRegistro extends Component {
 
     handleSubmit(event){ 
         event.preventDefault();
+        const searchParams = Object.keys(this.state).map((key) => {
+            return encodeURIComponent(key) + '=' + encodeURIComponent(this.state[key]);
+          }).join('&');          
+        console.log(searchParams)
+        fetch('http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/database/search?boleta=20185')
+        .then(ress => ress.json())
+        .then(ress => console.log(ress.data))
         fetch('http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/add', {
             method: 'POST',
-            body: JSON.stringify({
-                nombre: this.state.nombre,
-                apellidoP:this.state.apellidoP,
-                apellidoM:this.state.apellidoM,
-                Usuario:this.state.usuario,
-                boleta:this.state.boleta,
-                pass:this.state.pass,
-                correo:this.state.correo,
+            // mode: 'cors',
+            // body: JSON.stringify({
+            //     nombre: this.state.nombre,
+            //     apellidoP:this.state.apellidoP,
+            //     apellidoM:this.state.apellidoM,
+            //     Usuario:this.state.usuario,
+            //     boleta:this.state.boleta,
+            //     pass:this.state.pass,
+            //     correo:this.state.correo,
 
-            }),
-            headers: {"Content-Type": "text/plain"}
+            // }),
+            body:searchParams,
+            headers: {"Content-Type": 'application/x-www-form-urlencoded'}
         })
-        .then(ress => console.log(ress.json()))
-        .then(ress=> ress.data.length?alert("El usuario ya esta registrado"):alert("Usuario registrado con exito"));
+        .then(ress => ress.json())
+        .then(ress=> console.log(ress))
+        // .then(ress=> ress.data.length?alert("El usuario ya esta registrado"):alert("Usuario registrado con exito"));
     };
     render() { 
         let style ={display:'block'}

@@ -11,6 +11,16 @@ const _login = (boleta, password, done) => {
     console.log("HOLA",boleta,password);
     const Query= "SELECT boleta,nombre,password FROM `alumno` WHERE `boleta` = '" + boleta + "'\
     union  SELECT numEmp,nombre,password FROM `profesor` WHERE `numEmp` = '" + boleta + "'"
+    // var user = "boleta"+'='+boleta+'&'+"password"+'='+password
+    // console.log(user);
+    // fetch('http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/findUser', {
+    //     method: 'POST',
+    //     body:user,
+    //     headers: {"Content-Type": 'application/x-www-form-urlencoded'}
+    // })
+    // .then(ress => ress.json())
+    // .then(ress=> console.log(ress))
+
     connection.query(Query, (err, rows) => {
         console.log("HOLA");
         if (err)

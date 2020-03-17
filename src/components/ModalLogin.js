@@ -20,19 +20,25 @@ class ModalLogin extends Component {
   
     handleChange(e) {
         const { name, value } = e.target;
-        console.log(name,value);
         this.setState({ [name]: value });
-        console.log(this.state.boleta,this.state.password);
     }
-
+              
     handleSubmit(e) {
         console.log(this.state)
         e.preventDefault();
         const { boleta, password } = this.state;
-        const { dispatch } = this.props;
-        if (boleta && password) {
-            dispatch(userActions.login(boleta, password));
-        }
+        var userPass= `id=${boleta}&pass=${password}`
+        fetch('http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/login', {
+            method: 'POST',
+            body:userPass,
+            headers: {"Content-Type": 'application/x-www-form-urlencoded'}
+        })
+        .then(ress => ress.json())
+        .then(ress=> this.props.login(ress.data))
+        // const { dispatch } = this.props;
+        // if (boleta && password) {
+        //     dispatch(userActions.login(boleta, password));
+        // }
     }
 
   render() {
@@ -52,7 +58,6 @@ class ModalLogin extends Component {
     const { loggedIn, error } = this.props;
     let reDirect = loggedIn ? <Redirect to="/" push /> : '';
     const { boleta, password } = this.state;
-    console.log(this.props);
     return (
           <div id ="login" className="modallogin" style = {this.style}>
             <Form className="modal-content animate"  onSubmit={this.handleSubmit} method="post">

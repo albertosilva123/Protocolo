@@ -19,7 +19,7 @@ class Maestro extends Component {
     console.log(e);
   
   getData = _=>{
-    fetch(`https://localhost:4000/database/getprotocoloToMaster?boleta=${this.props.usuario.identificador}`)
+    fetch(`http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/database/getprotocoloToMaster?boleta=${this.props.usuario.numEmp}`)
     .then(ress => ress.json())
     .then(ress => this.setState({items: ress.data}))
     .then(ress => console.log("hola",this.state))

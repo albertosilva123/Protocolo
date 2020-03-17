@@ -24,44 +24,49 @@ class App extends Component {
     
     state = {
         show: false,
-        id:''
+        user:[],
+        loggedIn:false,
+        alumno:true,
       };
       showModal = e => {
         this.setState({
           show: !this.state.show
         });
       };
-    _get(){
-        fetch("http://localhost:3001/database/")
-        .then(ress => ress.json())
-        .then(ress => this.setState({id: ress.data}))
-        .then(ress => console.log(ress))
+      
+
+    handleLogin = (user) => {
+        user?this.setState({user:user}):'';
+        user?this.setState({loggedIn:true}):'';
+        user.boleta?this.setState({alumno:true}):this.setState({alumno:false});
+        console.log(user,this.state)
     }
 
+    get =_ =>{
+        console.log("check");
+        var userPass= "id=0&pass=profesor0"
+        fetch('http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/login', {
+            method: 'POST',
+            body:userPass,
+            headers: {"Content-Type": 'application/x-www-form-urlencoded'}
+        })
+        .then(ress => ress.json())
+        .then(ress=> console.log(ress))
+    }
+    
 
     render() {
         const { loggedIn, user } = this.props;
         let alumno = true;
-        loggedIn?console.log(user):'';
-        loggedIn?console.log("http://localhost:3001/database/search"+"?boleta="+user.identificador):'';
-        loggedIn?this.get:''; 
-        let reDirect = !loggedIn ? <Redirect to="/login" push /> :'';
-        loggedIn?this.state.show= false :'';
-        loggedIn?console.log(this.state):'';
-        let pantalla = !loggedIn ? '' : 
-        user.alumno? 
-        console.log("I´m alumno")
-            // <Alumno>
-            //     <div><h3>Welcome {user.nombre}</h3> <Button className="btn btn-primary" onClick={this.handleLogout}>Logout</Button></div>;
-            // </Alumno>
-        : 
-            <Maestro>
-                {console.log(user.alumno)}
-                <div><h3>Welcome {user.alumno}</h3> <Button className="btn btn-primary" onClick={this.handleLogout}>Logout</Button></div>;
-            </Maestro>
+        console.log(user);
+        this.state.loggedIn?console.log(user):'';
+        this.state.loggedIn?this.get:''; 
+        let reDirect = !this.state.loggedIn ? <Redirect to="/login" push /> :'';
+        this.state.loggedIn?this.state.show= false :'';
+        this.state.loggedIn?console.log(this.state):'';
         return (
             <div className="body-inner">
-                {loggedIn?'':
+                {this.state.loggedIn?'':
                 <header id="header" className="alt">
                     <h1>
                         <a href="index.html">
@@ -75,18 +80,18 @@ class App extends Component {
                         <li><a className = "button" onClick={e => {this.showModal();}}>Iniciar Sesion</a></li>
                     </ul>
                     </nav>
-                    <ModalLogin onClose={this.showModal} show={this.state.show} usuario ={user}/>
+                    <ModalLogin onClose={this.showModal} show={this.state.show} login={this.handleLogin}/>
                 </header>
                 }
                 {/* {pantalla} */}
                 <Switch>
                     <Route path="/alumno" component={Alumno}/>
                     <Route path="/login" render={(routeProps) => (
-                        loggedIn?
-                        alumno?
-                        <Alumno usuario= {user} />
+                        this.state.loggedIn?
+                        this.state.alumno?
+                        <Alumno usuario= {this.state.user} />
                         :
-                        <Maestro usuario = {user}/>
+                        <Maestro usuario = {this.state.user}/>
                         :
                         <Home/>
                         )}

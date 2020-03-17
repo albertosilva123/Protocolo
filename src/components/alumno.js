@@ -24,7 +24,6 @@ class Alumno extends Component {
     };
   }
   componentDidMount(){
-  
     // this.getLocalIP();
     this.getData()
   }
@@ -43,7 +42,8 @@ class Alumno extends Component {
   //   console.log(this.state)
   // }
   getData = _=>{
-    fetch(`https://localhost:4000/database/getprotocolo?boleta=${this.props.usuario.identificador}`)
+    console.log(`http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/database/getprotocolo?boleta=${this.props.usuario.boleta}`)
+    fetch(`http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/database/getprotocolo?boleta=${this.props.usuario.boleta}`)
     .then(ress => ress.json())
     .then(ress => this.setState({items: ress.data}))
     .then(ress => console.log(this.state))
