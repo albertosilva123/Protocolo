@@ -31,12 +31,15 @@ class Maestro extends Component {
                 <td>{nombreTT}</td>
                 <td></td>
                 <td><input type="file" name="" id=""></input></td>
+                {this.state.estatus =="Aceptado"? <td><span className="badge badge-success">{estatus}</span></td>:
                 <td>
+                  <td><span className="badge badge-success">{estatus}</span>  
                   <select name="" id="">
-                    <option value="Calificado">Calificado</option>
+                    <option value="Aceptadp">Calificado</option>
                     <option value="Rechazado">Rechazado</option>
                   </select>
                 </td>
+                }
                 <td></td>
                 <td>
                   <button onClick={console.log(this)}>Enviar</button>

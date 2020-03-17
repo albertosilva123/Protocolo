@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import '../style/alumno.css';
 import '../style/fontawesome-free/css/all.min.css';
-const ni = require('network-interfaces');
-const options = {
-  internal: false, // boolean: only acknowledge internal or external addresses (undefined: both)
-  ipVersion: 4     // integer (4 or 6): only acknowledge addresses of this IP address family (undefined: both)
-}
-const interfaceNames = ni.getInterfaces(options);
 class Alumno extends Component {
   constructor(props) {
     super(props);
