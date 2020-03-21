@@ -22,18 +22,33 @@ class Maestro extends Component {
     fetch(`http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/database/getprotocoloToMaster?boleta=${this.props.usuario.numEmp}`)
     .then(ress => ress.json())
     .then(ress => this.setState({items: ress.data}))
-    .then(ress => console.log("hola",this.state))
+    .then(ress => {
+      if(this.state.items.length>0){
+        for(let i = 0;i<this.state.items.length;i++){
+          fetch(`http://protocolo-env.eba-9bvnhbdx.us-east-1.elasticbeanstalk.com/database/getEvaluacion?numEmp=${this.props.usuario.numEmp}&numTT=${this.state.items[i].numTT}`)
+          .then(ress => ress.json())
+          .then(ress => this.state.items[i]=ress.data)
+        }
+        // const getFruit = fruits.find(fruit => fruit.name === 'apples');
+        console.log("Tiene TT asignado",this.state)
+      }       
+    })
     console.log(this.state)
-  }
-  renderBase =({numTT,nombreTT,fechaIngreso,fechaAlta})=>
-               <tr>
-                <td>{numTT}</td>
-                <td>{nombreTT}</td>
+  }  
+  renderBase =(evaluacion)=>{
+    console.log(evaluacion);
+    // {numTT,nombreTT,estatus}
+    // console.log(estatus);
+    return(
+      <tr>
+                <td>12</td>
+                <td>23</td>
                 <td></td>
                 <td><input type="file" name="" id=""></input></td>
-                {this.state.estatus =="Aceptado"? <td><span className="badge badge-success">{estatus}</span></td>:
+                {1 =="Aceptado"? 
+                <td><span className="badge badge-success">Aceptado</span></td>:
+                
                 <td>
-                  <td><span className="badge badge-success">{estatus}</span>  
                   <select name="" id="">
                     <option value="Aceptadp">Calificado</option>
                     <option value="Rechazado">Rechazado</option>
@@ -41,11 +56,15 @@ class Maestro extends Component {
                 </td>
                 }
                 <td></td>
+                {1 !="Aceptado"?
                 <td>
                   <button onClick={console.log(this)}>Enviar</button>
                 </td>
-              </tr>
-
+                :''
+              }
+          </tr>
+  )
+}
   addI = _ =>{
     const {item} = this.state
     fetch(`https://localhost:4000/database/add?curp=${item.curp}&nombre=${item.nombre}&edad=${item.edad}&dir=${item.dir}&tel=${item.telefono}`)
@@ -55,7 +74,7 @@ class Maestro extends Component {
   }
   render() {
     const {items,item} = this.state;
-    console.log(this.props.usuario);
+    console.log(items);
     return (
       <div className="wrapper">
 

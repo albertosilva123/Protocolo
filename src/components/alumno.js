@@ -14,7 +14,6 @@ class Alumno extends Component {
         telefono:'Ingresar telefono'
       },
       show:false,
-      address: interfaceNames
     };
   }
   componentDidMount(){
