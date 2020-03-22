@@ -1,9 +1,9 @@
 import React from "react";
 
 //Components
-import IndexNavbar from "components/Navbars/IndexNavbar.jsx";
-import PageHeader from "components/PageHeader/PageHeader.jsx";
-import Footer from "components/Footer/Footer.jsx";
+import IndexNavbar from "./Navbars/IndexNavbar.jsx";
+import PageHeader from "./PageHeader/PageHeader.jsx";
+import Footer from "./Footer/Footer.jsx";
 
 class Index extends React.Component {
   componentDidMount() {
